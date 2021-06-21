@@ -23,11 +23,21 @@ export const ModalTransaction = ({ isOpen, onRequestClose }: ModalTransactionPro
                 <input placeholder="Título" />
                 <input type="number" placeholder="Valor" />
                 <TransactionContainer>
-                    <Button type="button" onClick={() => { setType('deposit')}} isActive={type === 'deposit'}>
+                    <Button
+                        type="button"
+                        onClick={() => { setType('deposit') }}
+                        isActive={type === 'deposit'}
+                        activeColor="green"
+                        >
                         <img src={entrada} alt="seta verde para cima" />
                         <span>Entrada</span>
                     </Button>
-                    <Button type="button"  onClick={() => { setType('withdraw')}} isActive={type === 'withdraw'}>
+                    <Button
+                        type="button"
+                        onClick={() => { setType('withdraw') }}
+                        isActive={type === 'withdraw'}
+                        activeColor="red"
+                    >
                         <img src={saida} alt="seta vermelha para baixo" />
                         <span>Saída</span>
                     </Button>
