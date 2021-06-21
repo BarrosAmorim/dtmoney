@@ -4,7 +4,7 @@ import saida from '../../assets/saida.svg'
 import { Container, TransactionContainer, Button } from './styles'
 
 import close from '../../assets/close.svg'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 type ModalTransactionProps = {
     isOpen: boolean
@@ -13,22 +13,38 @@ type ModalTransactionProps = {
 
 export const ModalTransaction = ({ isOpen, onRequestClose }: ModalTransactionProps) => {
 
+    const [title, setTitle] = useState('')
+    const [value, setValue] = useState(0)
+    const [category, setCategory] = useState('')
+
     const [type, setType] = useState('deposit')
+
+    const handleCreateNewTransaction = (event: FormEvent) => {
+        event.preventDefault()
+
+        console.log({ title, value, category, type })
+    }
 
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} overlayClassName="react-modal-overlay" className="react-modal-content" >
             <button type="button" onClick={onRequestClose} className="react-modal-close"> <img src={close} alt="botão fechar modal" /> </button>
-            <Container>
+            <Container onSubmit={handleCreateNewTransaction}>
                 <h2>Cadastrar Transação</h2>
-                <input placeholder="Título" />
-                <input type="number" placeholder="Valor" />
+                <input placeholder="Título"
+                    value={title}
+                    onChange={event => setTitle(event.target.value)}
+                />
+                <input type="number" placeholder="Valor"
+                    value={value}
+                    onChange={event => setValue(Number(event.target.value))}
+                />
                 <TransactionContainer>
                     <Button
                         type="button"
                         onClick={() => { setType('deposit') }}
                         isActive={type === 'deposit'}
                         activeColor="green"
-                        >
+                    >
                         <img src={entrada} alt="seta verde para cima" />
                         <span>Entrada</span>
                     </Button>
@@ -42,7 +58,10 @@ export const ModalTransaction = ({ isOpen, onRequestClose }: ModalTransactionPro
                         <span>Saída</span>
                     </Button>
                 </TransactionContainer>
-                <input placeholder="Categoria" />
+                <input placeholder="Categoria"
+                    value={category}
+                    onChange={event => setCategory(event.target.value)}
+                />
                 <button type="submit">Cadastrar</button>
             </Container>
         </Modal>
