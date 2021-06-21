@@ -1,5 +1,7 @@
 import Modal from 'react-modal'
-import { Container } from './styles'
+import entrada from '../../assets/entrada.svg'
+import saida from '../../assets/saida.svg'
+import { Container, TransactionContainer } from './styles'
 
 import close from '../../assets/close.svg'
 
@@ -16,6 +18,16 @@ export const ModalTransaction = ({ isOpen, onRequestClose }: ModalTransactionPro
                 <h2>Cadastrar Transação</h2>
                 <input placeholder="Título" />
                 <input type="number" placeholder="Valor" />
+                <TransactionContainer>
+                    <button type="button">
+                        <img src={entrada} alt="seta verde para cima" />
+                        <span>Entrada</span>
+                    </button>
+                    <button type="button">
+                        <img src={saida} alt="seta vermelha para baixo" />
+                        <span>Saída</span>
+                    </button>
+                </TransactionContainer>
                 <input placeholder="Categoria" />
                 <button type="submit">Cadastrar</button>
             </Container>
