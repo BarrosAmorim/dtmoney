@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import Modal from 'react-modal'
 import entrada from '../../assets/entrada.svg'
 import saida from '../../assets/saida.svg'
@@ -6,7 +5,8 @@ import { Container, TransactionContainer, Button } from './styles'
 
 import close from '../../assets/close.svg'
 import { FormEvent, useState } from 'react'
-import { TransactionsContext } from '../../TransactionsContext'
+import { useTransactions } from '../../hooks/useTransactions'
+
 
 type ModalTransactionProps = {
     isOpen: boolean
@@ -14,7 +14,7 @@ type ModalTransactionProps = {
 }
 
 export const ModalTransaction = ({ isOpen, onRequestClose }: ModalTransactionProps) => {
-    const  {createTransaction}  = useContext(TransactionsContext)
+    const  {createTransaction}  = useTransactions()
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState(0)
     const [category, setCategory] = useState('')

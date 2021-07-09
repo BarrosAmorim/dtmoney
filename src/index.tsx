@@ -13,24 +13,7 @@ createServer({
     
 
     server.db.loadData({
-      transactions: [
-        {
-          id: 1,
-          title: 'Freelances de Website',
-          type: 'deposit',
-          category: 'Desenvolvimento',
-          amount: 3000,
-          createdAt: new Date()
-        },
-        {
-          id: 2,
-          title: 'Mercado',
-          type: 'withdraw',
-          category: 'Casa',
-          amount: 500,
-          createdAt: new Date()
-        },
-      ]
+      transactions: []
     })
   },
 
